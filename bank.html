@@ -1,48 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bank</title>
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
+  </head>
+  <body>
     <head>
-        <h1 class="lg:text-7xl text-center mt-28 ">Let's get some <span class="text-purple-600 italic font-semibold ">Mooooooney!!!</span></h1>
+      <h1 class="lg:text-7xl text-center mt-28">
+        Let's get some
+        <span class="text-purple-600 italic font-semibold">Mooooooney!!!</span>
+      </h1>
     </head>
     <main>
-        <section class="w-9/12 grid lg:grid-cols-3 gap-5 mx-auto mt-20">
-            <div class="bg-green-300 text-white p-6 rounded-lg">
-                <h4 class="text-5xl ">Deposit</h4>
-                <h2 class="text-7xl">$<span id="deposit-total">00</span></h2>
-            </div>
-            <div class="bg-pink-400 text-white p-6 rounded-lg">
-                <h4 class="text-5xl ">withdraw</h4>
-                <h2 class="text-7xl">$<span>00</span></h2>
-            </div>
-            <div class="bg-orange-400 text-white p-6 rounded-lg ">
-                <h4 class="text-5xl ">Balance</h4>
-                <h2 class="text-7xl">$<span id="balance-amount">1240</span></h2>
-            </div>            
-         
-        </section>
-        <section class="w-9/12 mx-auto grid lg:grid-cols-2 gap-5 mt-20">
-            <div class="bg-sky-500 p-10 rounded-lg">
-                <h4 class="text-5xl mb-5 text-white ">Please Deposit</h4>
-                <input id="deposit-amount" class="w-9/12 block mb-5 p-2 rounded-lg" type="number" placeholder="$ amount you want to deposit">
-                <button id="deposit-btn" class="bg-purple-800 text-white px-10 py-2 rounded-lg font-semibold">Deposit</button>
-            </div>
-            <div class="bg-purple-400 p-10 rounded-lg">
-                <h4 class="text-5xl mb-5 text-white  ">Please Deposit</h4>
-                <input id="" class="w-9/12 block mb-5 p-2 rounded-lg" type="number" placeholder="$ amount you want to deposit">
-                <button id="submit-btn" class="bg-purple-800 text-white px-10 py-2 rounded-lg font-semibold">Deposit</button>
-            </div>
-        </section>
+      <section class="w-9/12 grid lg:grid-cols-3 gap-5 mx-auto mt-20">
+        <div class="bg-green-300 text-white p-6 rounded-lg">
+          <h4 class="text-5xl">Deposit</h4>
+          <h2 class="text-7xl">$<span id="deposit-total">00</span></h2>
+        </div>
+        <div class="bg-pink-400 text-white p-6 rounded-lg">
+          <h4 class="text-5xl">withdraw</h4>
+          <h2 class="text-7xl">$<span id="withdraw-amount">00</span></h2>
+        </div>
+        <div class="bg-orange-400 text-white p-6 rounded-lg">
+          <h4 class="text-5xl">Balance</h4>
+          <h2 class="text-7xl">$<span id="balance-amount">1240</span></h2>
+        </div>
+      </section>
+      <section class="w-9/12 mx-auto grid lg:grid-cols-2 gap-5 mt-20">
+        <div class="bg-sky-500 p-10 rounded-lg">
+          <h4 class="text-5xl mb-5 text-white">Deposit</h4>
+          <input
+            id="deposit-amount"
+            class="w-9/12 block mb-5 p-2 rounded-lg"
+            type="number"
+            placeholder="$ amount you want to deposit"
+          />
+          <button
+            id="deposit-btn"
+            class="bg-purple-800 text-white px-10 py-2 rounded-lg font-semibold"
+          >
+            Deposit
+          </button>
+        </div>
+        <div class="bg-purple-400 p-10 rounded-lg">
+          <h4 class="text-5xl mb-5 text-white">Withdraw</h4>
+          <input
+            id="withdraw-field"
+            class="w-9/12 block mb-5 p-2 rounded-lg"
+            type="number"
+            placeholder="$ amount you want to withdraw"
+          />
+          <button
+            id="withdraw-btn"
+            class="bg-purple-800 text-white px-10 py-2 rounded-lg font-semibold"
+          >
+            Withdraw
+          </button>
+        </div>
+      </section>
     </main>
 
     <script>
-        
+      document
+        .getElementById("withdraw-btn")
+        .addEventListener("click", function () {
+          const withdrawField = document.getElementById("withdraw-field");
+          const newWithdraw = parseFloat(withdrawField.value);
+
+          const withdrawTotal = document.getElementById("withdraw-amount");
+          const previousWithdrawTotal = parseFloat(withdrawTotal.innerText);
+
+          
+          withdrawField.value = "";
+
+          if(isNaN(newWithdraw)){
+            alert("please provide valid amount");
+            return;
+          }
+          const balanceTotal = document.getElementById("balance-amount");
+
+          const previousBalanceTotal = parseFloat(balanceTotal.innerText);
+
+          if (newWithdraw > previousBalanceTotal) {
+            alert("Baper bank a atto taka nai");
+            return;
+          }
+          const currentWithdrawTotal = previousWithdrawTotal + newWithdraw;
+
+          withdrawTotal.innerText = currentWithdrawTotal;
+          const newBalanceTotal = previousBalanceTotal - newWithdraw;
+          balanceTotal.innerText = newBalanceTotal;
+
+          console.log(typeof previousBalanceTotal);
+        });
     </script>
     <script src="./js/deposit.js"></script>
-</body>
+  </body>
 </html>
