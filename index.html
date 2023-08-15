@@ -3,9 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Baper Bank</title>
 </head>
 <body>
-    
+    <head>
+        <h1 class="lg:text-7xl text-center mt-28 ">Welcome to my <span class="text-purple-600 italic font-semibold ">Baap-Er-Bank!!!</span></h1>
+    </head>
+    <main>
+        <section class="bg-cyan-200 p-8 w-9/12 mx-auto mt-16">
+            <h2 class="text-3xl mb-4">Please Login</h2>
+            <input id="user-email" class="w-9/12 block mb-3 p-2 rounded-lg" type="email" placeholder="Your email ">
+            <input id="user-password" class="w-9/12 block mb-3 p-2 rounded-lg" type="password" placeholder="password">
+            <button id="submit-btn" class="bg-purple-600 text-white px-10 py-2 rounded-lg font-semibold">Submit</button>
+        </section>
+    </main>
+    <script>
+        document.getElementById('submit-btn').addEventListener('click', function(){
+           const emailField = document.getElementById('user-email');
+           const email = emailField.value;
+           
+           const passwordField = document.getElementById('user-password')
+           const password = passwordField.value;
+            
+            if(email === 'sazzad@gmail.com' && password === '12345'){
+                // window.location.href('')
+                console.log('valid');
+            }
+            else{
+                console.log('invalid');
+            }
+
+        })
+    </script>
 </body>
 </html>
